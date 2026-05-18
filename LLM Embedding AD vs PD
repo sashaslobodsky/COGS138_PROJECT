@@ -1,0 +1,33 @@
+import os
+import scanpy as sc
+import pandas as pd
+os.listdir('.')
+meta = pd.read_csv('GSE174367_snRNA-seq_cell_meta.csv.gz')
+print(meta.head())
+adata = sc.read_10x_h5('GSE174367_snRNA-seq_filtered_feature_bc_matrix.h5')
+#fixing warning regarding no unique names
+adata.var_names_make_unique()
+print(adata.var_names.is_unique)
+print(adata)
+PD_meta = pd.read_csv('IPDCO_hg_midbrain_cell.tsv', sep='\t')
+print(PD_meta.head())
+
+#making sure AD metadata line up with AD matrix
+
+print(adata.shape)
+print(meta.shape)
+print(adata.obs_names[:5])
+print(meta['Barcode'].head())
+
+print(meta.columns)
+print(PD_meta.columns)
+
+
+#importing metadata to the AData object
+meta = meta.set_index('Barcode')
+common_cells = adata.obs_names.intersection(meta.index)
+adata = adata[common_cells].copy()
+adata.obs = meta.loc[common_cells]
+
+print(adata.obs.head())
+print(adata.obs['Diagnosis'].value_counts())
