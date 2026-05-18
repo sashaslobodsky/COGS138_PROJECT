@@ -1,0 +1,10 @@
+data/raw/*
+data/processed/*
+*.gz
+*.tar
+*.tar.gz
+*.h5ad
+*.mtx
+*.h5
+*.tsv
+*.xlsx
