@@ -67,9 +67,38 @@ pd_adata = ad.AnnData(
     obs = PD_meta.loc[pd_count.columns],
     var = pd_genes
 )
+
 pd_adata.var_names = pd_genes['genes'].astype(str).values
 pd_adata.var_names_make_unique()
 print(pd_adata)
 print(pd_adata.obs.head())
 print(pd_adata.var.head())
 
+#adding disease labels now to PD
+pd_adata.obs['Diagnosis']='PD'
+
+ad_adata = adata
+#matching column names for ad and pd
+ad_adata.obs['Disease']= ad_adata.obs['Diagnosis']
+pd_adata.obs['Disease']= 'PD'
+
+#finding overlap of genes in AD and PD
+com_genes = ad_adata.var_names.intersection(pd_adata.var_names)
+
+ad_adata = ad_adata[:,com_genes].copy()
+pd_adata = pd_adata[:,com_genes].copy()
+
+print(ad_adata.shape)
+print(pd_adata.shape)
+
+#combining the shared genes into one dataset
+combine = ad.concat(
+    [ad_adata, pd_adata],
+    label="dataset",
+    keys=["AD_dataset", "PD_dataset"]
+)
+
+print(combine)
+print(combine.obs["Disease"].value_counts())
+
+print('Done!') 
