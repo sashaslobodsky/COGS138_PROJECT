@@ -39,14 +39,7 @@ The top exploratory differentially expressed highly variable genes included
 `GREB1L`, and `OPALIN`. These should be interpreted as candidate signals from
 this dataset, not validated biomarkers, because there are only 18 donors.
 
-## Writeup guidance
-
-The notebook already contains the main writeup sections needed for submission:
-research question, background, workflow, figures, classifier results,
-interpretation, limitations, and future work.
-
-The most important conclusion to state in a presentation or final explanation is:
-single-nucleus expression profiles contain some AD-versus-control structure, but
+Single-nucleus expression profiles contain some AD-versus-control structure, but
 the small number of donors, possible batch/age/sex/cell-type confounds, and the
 absence of the originally proposed scGPT comparison mean the results should be
 presented as a transparent classical baseline rather than a final foundation
