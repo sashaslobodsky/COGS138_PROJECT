@@ -2,8 +2,8 @@ from pathlib import Path
 import urllib.request
 import tarfile
 
-DATA_DIR = Path("data")
-DATA_DIR.mkdir(exist_ok=True)
+DATA_DIR = Path("data/raw")
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 urls = {
     # Parkinson's GSE157783

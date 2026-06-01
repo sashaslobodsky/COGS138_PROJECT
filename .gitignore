@@ -8,6 +8,6 @@ data/processed/*
 *.h5
 *.tsv
 *.xlsx
-__pycache __/
+__pycache__/
 .vscode?
 .ipynb_checkpoints/
