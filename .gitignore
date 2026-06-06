@@ -9,5 +9,5 @@ data/processed/*
 *.tsv
 *.xlsx
 __pycache__/
-.vscode?
+.vscode/
 .ipynb_checkpoints/
